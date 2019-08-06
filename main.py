@@ -23,8 +23,14 @@ paddle_two.shape("square")
 paddle_two.shapesize(stretch_wid=5, stretch_len=1)
 paddle_two.penup()
 paddle_two.goto(350, 0)    # (0, 0) is in middle
-#   Ball
 
+#   Ball
+ball = turtle.Turtle()
+ball.speed(0)     # speed of animation, '0' for MAX
+ball.color("white")
+ball.shape("circle")
+ball.penup()
+ball.goto(0, 0)    # (0, 0) is in middle
 
 
 # main loop for the game to run
