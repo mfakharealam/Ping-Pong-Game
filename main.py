@@ -31,6 +31,8 @@ ball.color("white")
 ball.shape("circle")
 ball.penup()
 ball.goto(0, 0)    # (0, 0) is in middle
+ball.dx = 0.2     # ball moves by 2 pixels
+ball.dy = -0.2
 
 
 # movement of paddle
@@ -71,3 +73,23 @@ window.onkeypress(paddle_two_down, 'Down')
 while True:
     window.update()
 
+    # Ball Movement
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+
+    # Ball's Border checking
+    if ball.ycor() > 290:
+        ball.sety(290)
+        ball.dy *= -1   # reversing direction
+
+    if ball.ycor() < -288:
+        ball.sety(-288)
+        ball.dy *= -1   # reversing direction
+
+    if ball.xcor() > 390:   # past the paddle
+        ball.goto(0, 0)
+        ball.dx *= -1
+
+    if ball.xcor() < -390:   # past the paddle
+        ball.goto(0, 0)
+        ball.dx *= -1
