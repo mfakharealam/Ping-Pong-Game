@@ -120,6 +120,6 @@ while True:
         ball.setx(340)
         ball.dx *= -1
 
-    if (-340 > ball.xcor() > -350) and (paddle_two.ycor() + 40 > ball.ycor() > paddle_one.ycor() - 40):
+    if (-340 > ball.xcor() > -350) and (paddle_one.ycor() + 40 > ball.ycor() > paddle_one.ycor() - 40):
         ball.setx(-340)
         ball.dx *= -1
