@@ -35,6 +35,20 @@ ball.dx = 0.1     # ball moves by 2 pixels
 ball.dy = -0.1
 
 
+# for scoring
+
+score_one = 0
+score_two = 0
+
+write_score = turtle.Turtle()
+write_score.speed(0)
+write_score.color("white")
+write_score.penup()
+write_score.hideturtle()
+write_score.goto(0, 260)
+write_score.write("Player One: 0 Player Two: 0", align="center", font=("Courier", 24, "normal"))
+
+
 # movement of paddle
 def paddle_one_up():
     y = paddle_one.ycor()   # coordinates
@@ -89,17 +103,23 @@ while True:
     if ball.xcor() > 390:   # past the paddle
         ball.goto(0, 0)
         ball.dx *= -1
+        score_one += 1
+        write_score.clear()
+        write_score.write("Player One: {} Player Two: {}".format(score_one, score_two), align="center", font=("Courier", 24, "normal"))
 
     if ball.xcor() < -390:   # past the paddle
         ball.goto(0, 0)
         ball.dx *= -1
+        score_two += 1
+        write_score.clear()
+        write_score.write("Player One: {} Player Two: {}".format(score_one, score_two), align="center", font=("Courier", 24, "normal"))
 
     # Collisions b/w ball & paddle
 
-    if (340 < ball.xcor() < 350) and (ball.ycor() + 40 and ball.ycor() > paddle_two.ycor() - 40):
+    if (340 < ball.xcor() < 350) and (paddle_two.ycor() + 40 > ball.ycor() > paddle_two.ycor() - 40):
         ball.setx(340)
         ball.dx *= -1
 
-    if (-340 > ball.xcor() > -350) and (ball.ycor() + 40 and ball.ycor() > paddle_one.ycor() - 40):
+    if (-340 > ball.xcor() > -350) and (paddle_two.ycor() + 40 > ball.ycor() > paddle_one.ycor() - 40):
         ball.setx(-340)
         ball.dx *= -1
