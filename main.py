@@ -11,7 +11,7 @@ paddle_one = turtle.Turtle()
 paddle_one.speed(0)     # speed of animation, '0' for MAX
 paddle_one.color("white")
 paddle_one.shape("square")
-paddle_one.shapesize(stretch_wid=5, stretch_len=1)
+paddle_one.shapesize(stretch_wid=5, stretch_len=1)  # 20*5 height
 paddle_one.penup()
 paddle_one.goto(-350, 0)    # (0, 0) is in middle
 
@@ -31,8 +31,8 @@ ball.color("white")
 ball.shape("circle")
 ball.penup()
 ball.goto(0, 0)    # (0, 0) is in middle
-ball.dx = 0.2     # ball moves by 2 pixels
-ball.dy = -0.2
+ball.dx = 0.1     # ball moves by 2 pixels
+ball.dy = -0.1
 
 
 # movement of paddle
@@ -82,8 +82,8 @@ while True:
         ball.sety(290)
         ball.dy *= -1   # reversing direction
 
-    if ball.ycor() < -288:
-        ball.sety(-288)
+    if ball.ycor() < -290:
+        ball.sety(-290)
         ball.dy *= -1   # reversing direction
 
     if ball.xcor() > 390:   # past the paddle
@@ -92,4 +92,14 @@ while True:
 
     if ball.xcor() < -390:   # past the paddle
         ball.goto(0, 0)
+        ball.dx *= -1
+
+    # Collisions b/w ball & paddle
+
+    if (340 < ball.xcor() < 350) and (ball.ycor() + 40 and ball.ycor() > paddle_two.ycor() - 40):
+        ball.setx(340)
+        ball.dx *= -1
+
+    if (-340 > ball.xcor() > -350) and (ball.ycor() + 40 and ball.ycor() > paddle_one.ycor() - 40):
+        ball.setx(-340)
         ball.dx *= -1
