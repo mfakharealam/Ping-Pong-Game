@@ -15,6 +15,7 @@ paddle_one.shape("square")
 paddle_one.shapesize(stretch_wid=5, stretch_len=1)  # 20*5 height
 paddle_one.penup()
 paddle_one.goto(-350, 0)    # (0, 0) is in middle
+wid_one = 5
 
 #   2nd Paddle
 paddle_two = turtle.Turtle()
@@ -24,6 +25,7 @@ paddle_two.shape("square")
 paddle_two.shapesize(stretch_wid=5, stretch_len=1)
 paddle_two.penup()
 paddle_two.goto(350, 0)    # (0, 0) is in middle
+wid_two = 5
 
 #   Ball
 ball = turtle.Turtle()
@@ -110,6 +112,10 @@ while True:
         write_score.clear()
         write_score.write("Player One: {}           Player Two: {}".format(score_one, score_two), align="center",
                           font=("Courier", 24, "normal"))
+		wid_one -= 1
+        wid_two += 1
+        paddle_one.shapesize(stretch_wid=wid_one, stretch_len=1)
+        paddle_two.shapesize(stretch_wid=wid_two, stretch_len=1)
 
     if ball.xcor() < -390:   # past the paddle
         ball.goto(0, 0)
@@ -118,6 +124,10 @@ while True:
         write_score.clear()
         write_score.write("Player One: {}           Player Two: {}".format(score_one, score_two), align="center",
                           font=("Courier", 24, "normal"))
+		wid_two -= 1
+        wid_one += 1
+        paddle_two.shapesize(stretch_wid=wid_two, stretch_len=1)
+        paddle_one.shapesize(stretch_wid=wid_one, stretch_len=1)
 
     # Collisions b/w ball & paddle
 
