@@ -53,25 +53,25 @@ write_score.write("Player One: 0        Player Two: 0", align="center", font=("C
 # movement of paddle
 def paddle_one_up():
     y = paddle_one.ycor()   # coordinates
-    y += 30
+    y += 50
     paddle_one.sety(y)
 
 
 def paddle_one_down():
     y = paddle_one.ycor()   # coordinates
-    y -= 30
+    y -= 50
     paddle_one.sety(y)
 
 
 def paddle_two_up():
     y = paddle_two.ycor()   # coordinates
-    y += 30
+    y += 50
     paddle_two.sety(y)
 
 
 def paddle_two_down():
     y = paddle_two.ycor()   # coordinates
-    y -= 30
+    y -= 50
     paddle_two.sety(y)
 
 
