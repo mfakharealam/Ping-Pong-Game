@@ -117,6 +117,7 @@ while True:
         write_score.clear()
         write_score.write("Player One: {}           Player Two: {}".format(score_one, score_two), align="center",
                           font=("Courier", 24, "normal"))
+        
         if (wid_one != 1 and wid_two != 1) :
             wid_one -= 1
             wid_two += 1
