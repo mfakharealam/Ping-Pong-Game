@@ -1,6 +1,7 @@
 import turtle
 import winsound
 
+
 window = turtle.Screen()
 window.title("Ping Pong")
 window.bgcolor("black")
@@ -55,25 +56,25 @@ write_score.write("Player One: 0        Player Two: 0", align="center", font=("C
 # movement of paddle
 def paddle_one_up():
     y = paddle_one.ycor()   # coordinates
-    y += 30
+    y += 50
     paddle_one.sety(y)
 
 
 def paddle_one_down():
     y = paddle_one.ycor()   # coordinates
-    y -= 30
+    y -= 50
     paddle_one.sety(y)
 
 
 def paddle_two_up():
     y = paddle_two.ycor()   # coordinates
-    y += 30
+    y += 50
     paddle_two.sety(y)
 
 
 def paddle_two_down():
     y = paddle_two.ycor()   # coordinates
-    y -= 30
+    y -= 50
     paddle_two.sety(y)
 
 
@@ -107,36 +108,49 @@ while True:
 
     if ball.xcor() > 390:   # past the paddle
         ball.goto(0, 0)
-        ball.dx *= -1
+        ball.dx = -0.2
+        if ball.dy > 0 : 
+            ball.dy = 0.2
+        else :
+            ball.dy = -0.2
         score_one += 1
         write_score.clear()
         write_score.write("Player One: {}           Player Two: {}".format(score_one, score_two), align="center",
                           font=("Courier", 24, "normal"))
-		wid_one -= 1
-        wid_two += 1
-        paddle_one.shapesize(stretch_wid=wid_one, stretch_len=1)
-        paddle_two.shapesize(stretch_wid=wid_two, stretch_len=1)
+        if (wid_one != 1 and wid_two != 1) :
+            wid_one -= 1
+            wid_two += 1
+            paddle_one.shapesize(stretch_wid=wid_one, stretch_len=1)
+            paddle_two.shapesize(stretch_wid=wid_two, stretch_len=1)
 
     if ball.xcor() < -390:   # past the paddle
         ball.goto(0, 0)
-        ball.dx *= -1
+        ball.dx = 0.2
+        if ball.dy > 0 : 
+            ball.dy = 0.2
+        else :
+            ball.dy = -0.2
         score_two += 1
         write_score.clear()
         write_score.write("Player One: {}           Player Two: {}".format(score_one, score_two), align="center",
                           font=("Courier", 24, "normal"))
-		wid_two -= 1
-        wid_one += 1
-        paddle_two.shapesize(stretch_wid=wid_two, stretch_len=1)
-        paddle_one.shapesize(stretch_wid=wid_one, stretch_len=1)
+        if (wid_one != 1 and wid_two != 1) :
+            wid_two -= 1
+            wid_one += 1
+            paddle_two.shapesize(stretch_wid=wid_two, stretch_len=1)
+            paddle_one.shapesize(stretch_wid=wid_one, stretch_len=1)
 
     # Collisions b/w ball & paddle
 
     if (340 < ball.xcor() < 350) and (paddle_two.ycor() + 40 > ball.ycor() > paddle_two.ycor() - 40):
         ball.setx(340)
-        ball.dx *= -1
+        ball.dx *= -1.05
+        ball.dy *= 1.05
         winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
+
 
     if (-340 > ball.xcor() > -350) and (paddle_one.ycor() + 40 > ball.ycor() > paddle_one.ycor() - 40):
         ball.setx(-340)
-        ball.dx *= -1
+        ball.dx *= -1.05
+        ball.dy *= 1.05
         winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
